@@ -90,6 +90,7 @@
 		</repository>
 	</repositories>
 	<build>
+		<finalName>web_module</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
