@@ -90,11 +90,8 @@
 		</repository>
 	</repositories>
 	<build>
-<<<<<<< HEAD
 		<finalName>web-app</finalName>
-=======
-		<finalName>app</finalName>
->>>>>>> main
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
