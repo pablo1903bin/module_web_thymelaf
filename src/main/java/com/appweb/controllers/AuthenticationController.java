@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.appweb.models.User;
+import com.appweb.request_dtos.UserRequestLoginDto;
 import com.appweb.request_dtos.UsuarioDtoRequest;
 import com.appweb.services.AuthService;
 
@@ -32,12 +33,24 @@ public class AuthenticationController {
 	 * @param usuario
 	 * @return
 	 */
-	@GetMapping("/get-form-register")
+	@GetMapping("/registro")
 	public String registrarse() {
 
 		return "formRegistro";
 	}
+	
+	@GetMapping("/login")
+	public String getLoginForm() {
 
+		return "login_form";
+	}
+	
+	@PostMapping("/login")
+	public String processRegistrationForm(UserRequestLoginDto userDto, Model model, HttpServletResponse response) {
+		
+		return null;
+	}
+			
 	/**
 	 * Método que resibira al usuario y lo enviara a una api de registro de usuarios
 	 * que es una api gateway para registrar usuarios
