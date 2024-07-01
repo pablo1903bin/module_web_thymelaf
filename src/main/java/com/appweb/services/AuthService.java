@@ -25,6 +25,7 @@ public class AuthService {
 		logger.info("Llamando al servicio de registro de usuarios gateway");
 
 		try {
+			
 			ResponseEntity<?> response = authClient.signUp(userDto);
 
 			logger.info("se registro correctamente");
