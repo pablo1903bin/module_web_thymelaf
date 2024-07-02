@@ -6,6 +6,7 @@ public class UserRequestLoginDto {
 	private String password;
 
 	public UserRequestLoginDto() {
+		super();
 	}
 
 	public UserRequestLoginDto(String username, String password) {
@@ -33,5 +34,4 @@ public class UserRequestLoginDto {
 	public String toString() {
 		return "UserRequestLoginDto [username=" + username + ", password=" + password + "]";
 	}
-
 }

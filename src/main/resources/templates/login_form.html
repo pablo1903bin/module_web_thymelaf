@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" th:href="@{/login/css/form_login.css}" />
-	<title>Facebook - Log In or Sign Up</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" th:href="@{/imgs/login/logo_face.png}">
+		<link rel="stylesheet" type="text/css"
+			th:href="@{/login/css/form_login.css}" />
+		<title>Facebook - Inicia sesion o regístrate</title>
+	</head>
 
-<body>
-	<div class="container">
-		<div class="container-profile">
-			<span class="logo">
-				<img src="@{/imgs/login/1.svg}" alt="facebook">
-			</span>
-			<p class="connect-friends">Facebook te ayuda a comunicarte y compartir con las personas que forman parte de
-				tu vida.</p>
+	<body>
+		<div class="container">
+			<div class="container-profile">
+				<span class="logo">
+					<img th:src="@{/imgs/login/face.svg}" alt="facebook">
+				</span>
+				<p class="connect-friends">Facebook te ayuda a comunicarte y compartir con
+					las personas que forman parte de
+					tu vida.</p>
+			</div>
+			<div class="container-form">
+				<form class="form" id="userForm" th:action="@{/login}"
+					method="post" autocomplete="off"
+					th:object="${userDto}">
+					<input type="text" name="emailOrPhone" placeholder="Correo electronico o numero de telefono"   th:field="*{username}">
+					<input type="password" name="password" placeholder="Contraseña" th:field="*{password}">
+					<input type="submit" value="Iniciar Sesión">
+					<span><a href="#">¿Olvidaste tu contraseña?</a></span>
+					<div class="border"></div>
+					<button><a href="#">Crear cuenta nueva</a></button>
+				</form>
+				<p class="create-page">
+					<a href="#">Crear una pagina</a> para una celebridad , una marca o un <br>
+					neogocio.
+				</p>
+			</div>
 		</div>
-		<div class="container-form">
-			<form class="form" id="userForm" th:action="@{/authentication/register}" method="post" autocomplete="off">
-				<input type="text" placeholder="Correo electronico o numero de telefono">
-				<input type="password" placeholder="Contraseña">
-				<input type="submit" value="Iniciar Sesión">
-				<span><a href="#">¿Olvidaste tu contraseña?</a></span>
-				<div class="border"></div>
-				<button><a href="#">Crear cuenta nueva</a></button>
-			</form>
-			<p class="create-page">
-				<a href="#">Crear una pagina</a> para una celebridad , una marca o un <br> neogocio.
-			</p>
-		</div>
-	</div>
 
-</body>
+	</body>
 
 </html>

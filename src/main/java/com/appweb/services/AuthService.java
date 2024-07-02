@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.appweb.configs.AuthClient;
+import com.appweb.clients.AuthClient;
 import com.appweb.request_dtos.UsuarioDtoRequest;
 
 import feign.FeignException;
@@ -23,7 +23,7 @@ public class AuthService {
 	public ResponseEntity<?> registerUser(UsuarioDtoRequest userDto) {
 
 		logger.info("Llamando al servicio de registro de usuarios gateway");
-
+  System.out.println(userDto.toString());
 		try {
 			
 			ResponseEntity<?> response = authClient.signUp(userDto);

@@ -9,23 +9,42 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.appweb.models.User;
 import com.appweb.request_dtos.UserRequestLoginDto;
 import com.appweb.request_dtos.UsuarioDtoRequest;
 import com.appweb.services.AuthService;
+import com.appweb.servicesImpl.LoginServiceImp;
 
 import feign.FeignException;
-import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/authentication")
 public class AuthenticationController {
+
+	@Autowired
+	LoginServiceImp loginServiceImp;
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 	@Autowired
 	private AuthService authService;
+
+	@GetMapping("/login")
+	public String getLoginForm(Model model) {
+		model.addAttribute("userDto", new UserRequestLoginDto());
+		return "login_form";
+	}
+
+	@PostMapping("/login")
+	public String processRegistrationForm(UserRequestLoginDto userDto, Model model) {
+		System.out.println(userDto.toString());
+		loginServiceImp.login(userDto);
+		return "redirect:/not_found_content";
+	}
+
+	@GetMapping("/not_found_content")
+	public String notContentFound() {
+		return "/not_found/contenido_no_disp";
+	}
 
 	/**
 	 * Método que muestra el formulario para que se registren nuevos usuarios.
@@ -38,19 +57,7 @@ public class AuthenticationController {
 
 		return "formRegistro";
 	}
-	
-	@GetMapping("/login")
-	public String getLoginForm() {
 
-		return "login_form";
-	}
-	
-	@PostMapping("/login")
-	public String processRegistrationForm(UserRequestLoginDto userDto, Model model, HttpServletResponse response) {
-		
-		return null;
-	}
-			
 	/**
 	 * Método que resibira al usuario y lo enviara a una api de registro de usuarios
 	 * que es una api gateway para registrar usuarios
@@ -60,17 +67,17 @@ public class AuthenticationController {
 	 * @return
 	 */
 	@PostMapping("/register")
-	public String processRegistrationForm(User user, Model model, HttpServletResponse response) {
+	public String processRegistrationForm(User user, Model model) {
 		UsuarioDtoRequest usrDto = new UsuarioDtoRequest();
 		usrDto.setName(user.getName());
 		usrDto.setApellido(user.getApellido());
-		usrDto.setUsername(user.getEmail());
+		usrDto.setUsername(user.getUsername());
 		usrDto.setEmail(user.getEmail());
 		usrDto.setTelefono(user.getTelefono());
 		usrDto.setPassword(user.getPassword());
 
 		try {
-			
+
 			ResponseEntity<?> response1 = authService.registerUser(usrDto);
 
 			if (response1.getStatusCode() == HttpStatus.CREATED) {
@@ -79,7 +86,7 @@ public class AuthenticationController {
 				model.addAttribute("error",
 						"El usuario ya existe. Por favor, intenta con un nombre de usuario diferente.");
 			} else if (response1.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
-				model.addAttribute("error","Estamos teniendo problemas para comunicarnos con el servidor gateway");
+				model.addAttribute("error", "Estamos teniendo problemas para comunicarnos con el servidor gateway");
 			} else {
 				model.addAttribute("error",
 						"Hubo un error al intentar registrar el usuario. Por favor, inténtelo de nuevo más tarde.");

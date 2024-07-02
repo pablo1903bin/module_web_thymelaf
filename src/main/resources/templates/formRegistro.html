@@ -26,7 +26,7 @@
 		<div class="containerf">
 			<div class="contentf">
 
-				<form class="form" id="userForm" th:action="@{/authentication/register}"
+				<form class="form" id="userForm" th:action="@{/register}"
 					method="post" autocomplete="off">
 
 					<div th:if="${error}" class="alert alert-danger">
@@ -37,38 +37,38 @@
 					<p class="message">Regístrate ahora y obten acceso completo a nuestra aplicación.</p>
 					<div class="flex">
 						<label>
-							<input required placeholder name="name" type="text" class="input"
+							<input required name="name" type="text" class="input"
 								id="firstName">
 							<span>Nombre</span>
 						</label>
 						<label>
-							<input required placeholder name="apellido" type="text" class="input"
+							<input required  name="apellido" type="text" class="input"
 								id="lastName">
 							<span>Apellido</span>
 						</label>
 					</div>
 					<label>
-						<input required placeholder name="username" type="text" class="input"
+						<input required  name="username" type="text" class="input"
 							id="username">
 						<span>nombrede usuario</span>
 					</label>
 					<label>
-						<input required placeholder name="email" type="email" class="input"
+						<input required  name="email" type="email" class="input"
 							id="email">
 						<span>Correo</span>
 					</label>
 					<label>
-						<input required placeholder name="telefono" type="text" class="input"
+						<input required  name="telefono" type="text" class="input"
 							id="tel">
 						<span>telefono</span>
 					</label>
 					<label>
-						<input required placeholder name="password" type="password" class="input"
+						<input required  name="password" type="password" class="input"
 							id="password">
 						<span>Contraseña</span>
 					</label>
 					<label>
-						<input required placeholder name="confirmPassword" type="password"
+						<input required name="confirmPassword" type="password"
 							class="input" id="confirmPassword">
 						<span>Confirma contraseña</span>
 					</label>

@@ -9,7 +9,7 @@ public class HomeController {
   
 	@GetMapping("/home")
 	public String mostrarHome() {
-		return "index";
+		return "redirect:/not_found_content";
 	}
 
 }
