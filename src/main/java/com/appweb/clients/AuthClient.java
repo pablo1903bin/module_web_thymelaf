@@ -14,7 +14,7 @@ import com.appweb.responseDto.UserResponseDto;
 @FeignClient(
 	    value = "gateway", 
 	    path = "/gateway/api/authentication", 
-	    url = "${url.service.gateway}" // Asegúrate de que no hay doble barra al final
+	    url = "${url.service.gateway}" 
 	)
 	public interface AuthClient {
 
