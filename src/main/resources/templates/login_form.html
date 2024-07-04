@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +8,11 @@
 		<link rel="stylesheet" type="text/css"
 			th:href="@{/login/css/form_login.css}" />
 		<title>Facebook - Inicia sesion o regístrate</title>
-	</head>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha512-k2WPPrSgRFI6cTaHHhJdc8kAXaRM4JBFEDo1pPGGlYiOyv4vnA0Pp0G5XMYYxgAPmtmv/IIaQA6n5fLAyJaFMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
+	</head>
 	<body>
 		<div class="container">
 			<div class="container-profile">
@@ -22,23 +24,29 @@
 					tu vida.</p>
 			</div>
 			<div class="container-form">
-				<form class="form" id="userForm" th:action="@{/login}"
-					method="post" autocomplete="off"
-					th:object="${userDto}">
-					<input type="text" name="emailOrPhone" placeholder="Correo electronico o numero de telefono"   th:field="*{username}">
-					<input type="password" name="password" placeholder="Contraseña" th:field="*{password}">
+
+				<form class="form" id="userForm" th:action="@{/login}" method="post" autocomplete="on" th:object="${userDto}">
+
+					<input id="username" type="text" name="nombreUsuario" placeholder="Correo electrónico o número de teléfono" th:field="*{nombreUsuario}">
+					<span class="error-message"></span>
+					<input id="password" type="password" name="contraseña" placeholder="Contraseña" th:field="*{contraseña}">
+					<span class="error-message"></span>
+
 					<input type="submit" value="Iniciar Sesión">
+
 					<span><a href="#">¿Olvidaste tu contraseña?</a></span>
 					<div class="border"></div>
+					<!--<button><a th:href="@{/registro}">Crear cuenta nueva</a></button>-->
 					<button><a href="#">Crear cuenta nueva</a></button>
-				</form>
+				  </form>
+				  
 				<p class="create-page">
 					<a href="#">Crear una pagina</a> para una celebridad , una marca o un <br>
 					neogocio.
 				</p>
 			</div>
 		</div>
-
+		<script th:src="@{/assets/js/login/login.js}"></script>
 	</body>
 
 </html>

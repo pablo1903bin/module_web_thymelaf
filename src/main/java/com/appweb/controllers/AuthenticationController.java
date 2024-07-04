@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.appweb.models.User;
-import com.appweb.request_dtos.UserRequestLoginDto;
 import com.appweb.request_dtos.UsuarioDtoRequest;
+import com.appweb.request_dtos.UsuarioRequestFaceDto;
 import com.appweb.services.AuthService;
 import com.appweb.servicesImpl.LoginServiceImp;
 
@@ -30,13 +30,12 @@ public class AuthenticationController {
 
 	@GetMapping("/login")
 	public String getLoginForm(Model model) {
-		model.addAttribute("userDto", new UserRequestLoginDto());
+		model.addAttribute("userDto", new UsuarioRequestFaceDto());
 		return "login_form";
 	}
 
 	@PostMapping("/login")
-	public String processRegistrationForm(UserRequestLoginDto userDto, Model model) {
-		System.out.println(userDto.toString());
+	public String processRegistrationForm(UsuarioRequestFaceDto userDto, Model model) {
 		loginServiceImp.login(userDto);
 		return "redirect:/not_found_content";
 	}

@@ -90,7 +90,7 @@
 		</repository>
 	</repositories>
 	<build>
-		<finalName>ROOT</finalName>
+		<finalName>facebook</finalName>
 
 		<plugins>
 			<plugin>
