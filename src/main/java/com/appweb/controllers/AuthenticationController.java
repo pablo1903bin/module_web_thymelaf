@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.appweb.models.User;
-import com.appweb.request_dtos.UserRequestLoginDto;
 import com.appweb.request_dtos.UsuarioDtoRequest;
 import com.appweb.request_dtos.UsuarioRequestFaceDto;
 import com.appweb.services.AuthService;
